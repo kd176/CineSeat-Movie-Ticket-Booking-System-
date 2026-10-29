@@ -1,0 +1,18 @@
+const vm=require('node:vm'),fs=require('node:fs'),assert=require('node:assert/strict');
+function makeContext(saved=null){const elements=new Map();let data=saved;function element(s){if(!elements.has(s))elements.set(s,{innerHTML:'',textContent:'',outerHTML:'',value:'',style:{},classList:{toggle(){},add(){}},insertAdjacentHTML(){},scrollIntoView(){},close(){},showModal(){}});return elements.get(s)}const context={document:{querySelector:element,querySelectorAll:()=>[]},localStorage:{getItem:()=>data,setItem:(k,v)=>data=v},window:{scrollTo(){},addEventListener(){}},setTimeout:()=>0,clearTimeout(){},console,assert};vm.createContext(context);for(const path of ['app.js','upgrade.js','discovery.js'])vm.runInContext(fs.readFileSync('dist/'+path,'utf8'),context);return {context,saved:()=>data}}
+const first=makeContext();vm.runInContext(`
+assert.equal(db.movies.length,56);assert.equal(new Set(db.movies.map(m=>m.id)).size,56);assert.equal(new Set(db.movies.map(m=>m.name)).size,56);
+assert.equal(hypeRanking().filter(x=>x.score>0).length,0);
+const m=movie(7);current={id:11,name:'Test A'};db.users=[current,{id:12,name:'Test B'}];toast=()=>{};refreshHype=()=>{};renderCards=()=>{};renderSeats=()=>{};
+toggleHype(m.id);assert.equal(hypeMetrics(m).score,5);toggleHype(m.id);assert.equal(hypeMetrics(m).score,0);toggleHype(m.id);current=db.users[1];toggleHype(m.id);assert.equal(hypeMetrics(m).votes,2);
+db.favourites[11]=[m.id];assert.equal(hypeMetrics(m).score,12);db.bookings.push({id:901,movie:m.id,seats:[1,2,3],status:'Confirmed'});assert.equal(hypeMetrics(m).score,21);db.bookings.at(-1).status='Cancelled';assert.equal(hypeMetrics(m).score,12);assert.equal(hypeRanking()[0].m.id,m.id);
+query='spiderman';genre='All movies';languageFilter='All languages';assert.ok(filteredMovies().some(m=>m.name.includes('Spider-Man')));query='';languageFilter='Tamil';assert.ok(filteredMovies().every(m=>m.language==='Tamil'));languageFilter='All languages';genre='Animation';assert.equal(filteredMovies().length,6);genre='All movies';
+chosenDate=dateChoices()[2];chosenTime='18:00';m.seats=40;cart=[];db.bookings=[];seatPreference='view';
+assert.equal(targetRow(m),5);assert.equal(bestSeats(m,1)[0],28);assert.equal(bestSeats(m,3).join(','),'27,28,29');
+seatPreference='aisle';assert.equal(bestSeats(m,1)[0],26);seatPreference='view';db.bookings.push({id:902,movie:m.id,date:chosenDate,time:chosenTime,seats:[27,28,29],status:'Confirmed'});let suggestion=bestSeats(m,3);assert.ok(suggestion.every(n=>![27,28,29].includes(n)));assert.equal(new Set(suggestion.map(n=>Math.floor((n-1)/5))).size,1);
+cart=[{movie:m.id,date:chosenDate,time:chosenTime,seats:[22,23,24],price:m.price}];assert.ok(bestSeats(m,3).every(n=>![22,23,24].includes(n)));cart=[];db.bookings=[];assert.equal(recommendSeats(m,8).split,true);assert.equal(new Set(bestSeats(m,8)).size,8);
+db.bookings=[{movie:m.id,date:chosenDate,time:chosenTime,seats:Array.from({length:40},(_,i)=>i+1),status:'Confirmed'}];assert.equal(bestSeats(m,1).length,0);assert.equal(bestSeats(m,1,chosenDate,'21:30').length,1);
+m.seats=1;db.bookings=[];assert.equal(bestSeats(m,1)[0],1);assert.equal(bestSeats(m,2).length,0);save();
+console.log('PASS: catalogue uniqueness, unseeded hype, vote toggling, ranking, filters, best-view centre, aisle preference, booked/in-bag exclusion, split groups, sold-out shows and one-seat layouts.');
+`,first.context);
+const second=makeContext(first.saved());vm.runInContext("assert.equal(db.movies.length,56); assert.equal(db.hypeVotes[11].length,1); console.log('PASS: reload preserves votes and does not duplicate the catalogue.');",second.context);

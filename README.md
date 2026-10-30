@@ -1,4 +1,9 @@
-# CineSeat — shared cinema booking project
+# CineSeat — Shared Cinema Booking System (Python DSA & Full-Stack Edition)
+
+> 🌐 **Live Cloud Website (Direct Access for Phones & Browsers):** [https://khushi-cineseat.manvik-kohli.chatgpt.site/](https://khushi-cineseat.manvik-kohli.chatgpt.site/)  
+> 🎓 **Academic Submission:** Student: **Khushi** (Reg No: **251302194**) | Faculty Evaluator: **Mr. Vivek** | SGT University  
+> 💻 **Local Python DSA Server:** http://127.0.0.1:5000 (via python main.py)
+
 
 A public demo cinema with a Vinext/React frontend, Cloudflare Worker API and D1 SQL database. 56 seeded films, multiple shows per order, up to 8 seats per show, best-seat suggestions, private tickets and receipts, cancellations, FIFO group waiting lists, favourites and community votes.
 

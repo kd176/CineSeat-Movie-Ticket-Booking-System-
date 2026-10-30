@@ -15,6 +15,8 @@ Demo Video Filename : Khushi_251302194_CineSeat_Demo.mp4
 2. PROJECT LINKS & REPOSITORIES
 --------------------------------------------------------------------------------
 GitHub Repository   : https://github.com/kd176/CineSeat-Movie-Ticket-Booking-System-
+Live Cloud Website  : https://khushi-cineseat.manvik-kohli.chatgpt.site/ (Direct link for phone & web)
+Local Python Server : http://127.0.0.1:5000 (When running python main.py)
 Demo Video Link     : [PASTE YOUR GOOGLE DRIVE / YOUTUBE UNLISTED VIDEO LINK HERE]
 Admin Demo Access   : Password -> admin123
 

@@ -62,3 +62,6 @@ dist/
 # Private keys
 *.pem
 .openai/
+__pycache__/
+*.pyc
+

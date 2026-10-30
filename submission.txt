@@ -1,0 +1,56 @@
+================================================================================
+CINESEAT — MOVIE TICKET BOOKING SYSTEM
+ACADEMIC PROJECT SUBMISSION
+================================================================================
+
+1. STUDENT & EVALUATION DETAILS
+--------------------------------------------------------------------------------
+Student Name        : Khushi
+Registration Number : 251302194
+Course              : Data Structures and Algorithms in Python
+Faculty / Evaluator : Mr. Vivek
+Submission Date     : October 2026
+Demo Video Filename : Khushi_251302194_CineSeat_Demo.mp4
+
+2. PROJECT LINKS & REPOSITORIES
+--------------------------------------------------------------------------------
+GitHub Repository   : https://github.com/kd176/CineSeat-Movie-Ticket-Booking-System-
+Demo Video Link     : [PASTE YOUR GOOGLE DRIVE / YOUTUBE UNLISTED VIDEO LINK HERE]
+Admin Demo Access   : Password -> admin123
+
+3. PROJECT OVERVIEW
+--------------------------------------------------------------------------------
+CineSeat is an end-to-end commercial cinema booking simulation featuring 56 films,
+three Delhi NCR multiplexes (Citylight, Aurora, Horizon), deterministic show schedules,
+interactive 40-seat cinema hall grids (Classic, Premium, Recliner), adjacent recliner
+recommendations, atomic multi-ticket checkout, promo discounts, digital admission
+receipts, and automated waiting list queue reallocations upon order cancellations.
+
+4. DATA STRUCTURES & ALGORITHMIC COMPLEXITY
+--------------------------------------------------------------------------------
+1. 2D Seat Matrix (Rows A-H, Cols 1-5)  : O(1) seat booking / access
+2. Sliding Window Spatial Recommendation: O(R * C) optimal adjacent recliner search
+3. Prefix Tree (MovieTrie)              : O(L) sub-millisecond title autocomplete
+4. Binary Search Tree (MovieBST)        : O(log N + K) rating & price range queries
+5. FIFO Doubly-Linked-List Queue        : O(1) waitlist allocation for sold-out shows
+6. Priority Queue (Min-Heap)            : O(log N) VIP / priority member queue
+7. LIFO Stack (BookingHistoryStack)     : O(1) cancellation audit log & rollback
+8. Weighted Graph & Dijkstra's Algorithm: O((V + E) log V) shortest path across NCR
+9. Merge Sort & Quick Sort              : O(N log N) catalogue sorting (Rating/Price)
+10. Custom Chained Hash Table           : O(1) average digital ticket verification
+
+5. HOW TO RUN & VERIFY LOCALLY
+--------------------------------------------------------------------------------
+Requirements: Python 3.10+ (Flask, flask-cors)
+
+1. Run DSA Unit Tests (100% Pass Rate):
+   python main.py --test
+
+2. Launch Web Application:
+   python main.py
+   Open browser at: http://127.0.0.1:5000
+
+3. Launch Terminal CLI Mode:
+   python main.py --cli
+
+================================================================================

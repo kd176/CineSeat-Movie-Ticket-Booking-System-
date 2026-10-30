@@ -1,0 +1,5 @@
+# CineSeat - Movie Ticket Booking System (Python DSA Edition)
+# Requirements
+Flask>=3.0.0
+flask-cors>=4.0.0
+Pillow>=10.0.0
